@@ -1,0 +1,14 @@
+/* Card.css */
+.custom-card {
+    width: 20rem;
+    height: 250px; 
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .custom-card .card-img-top {
+    height: 150px; 
+    object-fit: cover;
+    border-radius: 8px 8px 0 0; 
+  }
+  
