@@ -1,33 +1,42 @@
-import React from 'react';
+import React , {useState , useRef , useEffect}from 'react';
 import './Card.css'; 
-
+import { useDispatchCart , useCart} from './ContextReducer';
 const Card = (props) => {
   const options = props.options;
-  const priceOptions = Object.keys(options);
-const handleAddtoCart = () => {
-  
+  const priceOptions = Object.keys(options); 
+  const [qty, setQty] = useState(1)
+  const [size, setSize] = useState("")
+  const dispatch = useDispatchCart();
+  const data  = useCart();
+  const priceRef = useRef();
+const handleAddtoCart = async() => {
+await dispatch({type:"ADD" , id:props.FoodItems._id , name:props.FoodItems.name , price:finalPrice , qty:qty , size:size})
 }
+let finalPrice = qty * parseInt(options[size]);
+useEffect(() => {
+  setSize(priceRef.current.value)
+},[])
   return (
     <div className="card custom-card mt-3">
-      <img src={props.imgSrc} className="card-img-top" alt="..." />
+      <img src={props.FoodItems.img} className="card-img-top" alt="..." />
       <div className="card-body">
-        <h5 className="card-title">{props.foodName}</h5>
+        <h5 className="card-title">{props.FoodItems.name}</h5>
         <div className="container w-100">
-          <select className="m-2 h-100 bg-success rounded">
+          <select className="m-2 h-100 bg-success rounded" onChange={(e) => setQty(e.target.value)}>
             {Array.from(Array(6), (e, i) => (
               <option key={i + 1} value={i + 1}>
                 {i + 1}
               </option>
             ))}
           </select>
-          <select className="m-2 h-100 bg-success rounded">
+          <select className="m-2 h-100 bg-success rounded" ref={priceRef} onChange={(e) => setSize(e.target.value)}>
             {priceOptions.map((data) => (
               <option key={data} value={data}>
                 {data}
               </option>
             ))}
           </select>
-          <div className="d-inline h-100 fs-5">Total Price</div>
+          <div className="d-inline h-100 fs-5">₹{finalPrice}/-</div>
 
         </div>
 <hr/>

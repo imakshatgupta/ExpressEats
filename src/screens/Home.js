@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import Card from "../components/Card";
 
 export const Home = () => {
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState("");
   const [FoodCategory, setFoodCategory] = useState([]);
   const [FoodItems, setFoodItems] = useState([]);
   const loadData = async (data) => {
@@ -45,9 +45,10 @@ export const Home = () => {
                   placeholder="Search"
                   aria-label="Search"
                   value={search}
-                  onChange={(e)=>{setSearch(e.target.value)}}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                  }}
                 />
-               
               </div>
             </div>
             <div className="carousel-item active">
@@ -114,7 +115,11 @@ export const Home = () => {
                   <hr />
                   {FoodItems !== [] ? (
                     FoodItems.filter(
-                      (item) => (item.CategoryName === data.CategoryName) && (item.name.toLowerCase().includes(search.toLocaleLowerCase()))
+                      (item) =>
+                        item.CategoryName === data.CategoryName &&
+                        item.name
+                          .toLowerCase()
+                          .includes(search.toLocaleLowerCase())
                     ).map((filterItems) => {
                       return (
                         <div
@@ -122,9 +127,9 @@ export const Home = () => {
                           className="col-12 col-md-6 col-lg-3"
                         >
                           <Card
-                            foodName={filterItems.name}
+                            FoodItems = {filterItems}
                             options={filterItems.options[0]}
-                            imgSrc={filterItems.img}
+                            // imgSrc={filterItems.img}
                           ></Card>
                         </div>
                       );
