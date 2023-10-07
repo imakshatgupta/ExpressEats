@@ -30,7 +30,7 @@ const navigate = useNavigate();
           </li>
           {(localStorage.getItem("authToken"))?
           <li className="nav-item">
-            <Link className="nav-link fs-5" aria-current="page" to="/myOrder">My Orders</Link>
+            <Link className="nav-link fs-5" aria-current="page" to="/myOrder">My orders</Link>
           </li>
           : ""}
         </ul>
